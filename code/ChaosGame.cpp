@@ -50,6 +50,7 @@ int main()
                     {
                         ///fourth click
                         ///push back to points vector
+                        cout << "Fourth Click\n";
                     }
                 }
             }
@@ -70,6 +71,7 @@ int main()
             ///select random vertex
             ///calculate midpoint between random vertex and the last point in the vector
             ///push back the newly generated coord.
+            cout << "true\n";
         }
 
         /*
