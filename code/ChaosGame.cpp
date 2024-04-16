@@ -22,7 +22,8 @@ int main()
     Vector2f newVertex;
     Vector2f newPoint;
     Vector2f currPoint;
-    int randCurrVertex;       
+    int randCurrVertex;      
+
 
 	while (window.isOpen())
 	{
@@ -31,6 +32,7 @@ int main()
 		Handle the players input
 		****************************************
 		*/
+        
         Event event;
 		while (window.pollEvent(event))
 		{
@@ -119,7 +121,25 @@ int main()
 		****************************************
 		*/
         window.clear();
-    
+
+        sf::Font font;
+        if (!font.loadFromFile("KOMIKAP_.ttf")) 
+        {
+            cout << "Error";
+        }
+        else
+        {
+            font.loadFromFile("KOMIKAP_.ttf");
+        }
+        
+        sf::Text text;
+        text.setFont(font); 
+        text.setString("Press three random places on the screen.");
+        text.setCharacterSize(24);
+        text.setFillColor(sf::Color::Green);
+        text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+        window.draw(text);
+
         for(int i = 0; i < vertices.size(); i++)
         {
             RectangleShape rect(Vector2f(10,10));
