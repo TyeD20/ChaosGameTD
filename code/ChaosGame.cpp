@@ -3,6 +3,7 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
 #include <sstream>
+#include <cstdlib>
 #include <vector>
 
 // Make code easier to type with "using namespace"
@@ -18,6 +19,10 @@ int main()
 
     vector<Vector2f> vertices;
     vector<Vector2f> points;
+    Vector2f newVertex;
+    Vector2f newPoint;
+    Vector2f currPoint;
+    int randCurrVertex;
 
 	while (window.isOpen())
 	{
@@ -50,7 +55,7 @@ int main()
                     {
                         ///fourth click
                         ///push back to points vector
-                        
+                        points.push_back(Vector2f(event.mouseButton.x, event.mouseButton.y));
                     }
                 }
             }
@@ -72,6 +77,26 @@ int main()
             ///calculate midpoint between random vertex and the last point in the vector
             ///push back the newly generated coord.
             
+
+            
+            Vector2f fourthClick = points[0];
+            if(points.size() > 1)
+            {
+                fourthClick = points[points.size() - 1];
+            }
+
+            randCurrVertex = rand() % (3 - 1 + 1) + 1;
+            newVertex = vertices[randCurrVertex - 1];
+            currPoint = fourthClick;
+            for (int i = 0; i < 50; i++)
+            {
+                randCurrVertex = rand() % (3 - 1 + 1) + 1;
+                newVertex = vertices[randCurrVertex - 1];
+                newPoint.x = (newVertex.x + currPoint.x) / 2;
+                newPoint.y = (newVertex.y + currPoint.y) / 2;
+                points.push_back(newPoint);
+                currPoint = newPoint;
+            }
         }
 
         /*
@@ -86,6 +111,14 @@ int main()
             rect.setPosition(Vector2f(vertices[i].x, vertices[i].y));
             rect.setFillColor(Color::Blue);
             window.draw(rect);
+        }
+
+        for(int i = 0; i < points.size(); i++)
+        {
+            RectangleShape rectUser(Vector2f(10, 10));
+            rectUser.setPosition(Vector2f(points[i].x, points[i].y));
+            rectUser.setFillColor(Color::Blue);
+            window.draw(rectUser);
         }
         window.display();
     }
