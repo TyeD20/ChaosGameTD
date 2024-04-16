@@ -22,7 +22,7 @@ int main()
     Vector2f newVertex;
     Vector2f newPoint;
     Vector2f currPoint;
-    int randCurrVertex;
+    int randCurrVertex;       
 
 	while (window.isOpen())
 	{
@@ -69,7 +69,6 @@ int main()
 		Update
 		****************************************
 		*/
-
         if(points.size() > 0)
         {
             ///generate more point(s)
@@ -94,6 +93,21 @@ int main()
                 newVertex = vertices[randCurrVertex - 1];
                 newPoint.x = (newVertex.x + currPoint.x) / 2;
                 newPoint.y = (newVertex.y + currPoint.y) / 2;
+            int randCurrVertex;
+            Vector2f newVertex;
+            Vector2f newPoint;
+            Vector2f currPoint;
+            const Vector2f fourthClick = points[0];
+            randCurrVertex = rand() % (3 - 1 + 1) + 1;
+            newVertex = vertices[randCurrVertex];
+            currPoint = fourthClick;
+
+            for (int i = 0; i < 50; ++i)
+            {
+                randCurrVertex = rand() % (3 - 1 + 1) + 1;
+                newVertex = vertices[randCurrVertex - 1];
+                newPoint.x = (newVertex.x + currPoint.x) /2;
+                newPoint.y = (newVertex.y + currPoint.y) /2;
                 points.push_back(newPoint);
                 currPoint = newPoint;
             }
@@ -105,6 +119,7 @@ int main()
 		****************************************
 		*/
         window.clear();
+    
         for(int i = 0; i < vertices.size(); i++)
         {
             RectangleShape rect(Vector2f(10,10));
