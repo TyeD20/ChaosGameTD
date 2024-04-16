@@ -115,7 +115,7 @@ int main()
 
         for(int i = 0; i < points.size(); i++)
         {
-            RectangleShape rectUser(Vector2f(10, 10));
+            RectangleShape rectUser(Vector2f(5, 5));
             rectUser.setPosition(Vector2f(points[i].x, points[i].y));
             rectUser.setFillColor(Color::Blue);
             window.draw(rectUser);
