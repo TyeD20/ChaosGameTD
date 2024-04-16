@@ -3,6 +3,7 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
 #include <sstream>
+#include <cstdlib>
 #include <vector>
 
 // Make code easier to type with "using namespace"
@@ -18,10 +19,10 @@ int main()
 
     vector<Vector2f> vertices;
     vector<Vector2f> points;
-    int randCurrVertex;
     Vector2f newVertex;
     Vector2f newPoint;
-    Vector2f currPoint;       
+    Vector2f currPoint;
+    int randCurrVertex;       
 
 	while (window.isOpen())
 	{
@@ -74,6 +75,24 @@ int main()
             ///select random vertex
             ///calculate midpoint between random vertex and the last point in the vector
             ///push back the newly generated coord.
+            
+
+            
+            Vector2f fourthClick = points[0];
+            if(points.size() > 1)
+            {
+                fourthClick = points[points.size() - 1];
+            }
+
+            randCurrVertex = rand() % (3 - 1 + 1) + 1;
+            newVertex = vertices[randCurrVertex - 1];
+            currPoint = fourthClick;
+            for (int i = 0; i < 50; i++)
+            {
+                randCurrVertex = rand() % (3 - 1 + 1) + 1;
+                newVertex = vertices[randCurrVertex - 1];
+                newPoint.x = (newVertex.x + currPoint.x) / 2;
+                newPoint.y = (newVertex.y + currPoint.y) / 2;
             int randCurrVertex;
             Vector2f newVertex;
             Vector2f newPoint;
@@ -107,6 +126,14 @@ int main()
             rect.setPosition(Vector2f(vertices[i].x, vertices[i].y));
             rect.setFillColor(Color::Blue);
             window.draw(rect);
+        }
+
+        for(int i = 0; i < points.size(); i++)
+        {
+            RectangleShape rectUser(Vector2f(2, 2));
+            rectUser.setPosition(Vector2f(points[i].x, points[i].y));
+            rectUser.setFillColor(Color::Blue);
+            window.draw(rectUser);
         }
         window.display();
     }
