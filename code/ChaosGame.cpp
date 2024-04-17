@@ -78,8 +78,6 @@ int main()
             ///calculate midpoint between random vertex and the last point in the vector
             ///push back the newly generated coord.
             
-
-            
             Vector2f fourthClick = points[0];
             if(points.size() > 1)
             {
@@ -95,14 +93,7 @@ int main()
                 newVertex = vertices[randCurrVertex - 1];
                 newPoint.x = (newVertex.x + currPoint.x) / 2;
                 newPoint.y = (newVertex.y + currPoint.y) / 2;
-            }/*int randCurrVertex;
-            Vector2f newVertex;
-            Vector2f newPoint;
-            Vector2f currPoint;
-            const Vector2f fourthClick = points[0];
-            randCurrVertex = rand() % (3 - 1 + 1) + 1;
-            newVertex = vertices[randCurrVertex];
-            currPoint = fourthClick;*/
+            }
 
             for (int i = 0; i < 50; ++i)
             {
@@ -131,12 +122,13 @@ int main()
         {
             sf::Text text;
             text.setFont(font); 
-            text.setString("Press three random places on the screen.\nThen, place a fourth point to mark where we will start");
+            text.setString("Click three random places on the screen.\nThen, click a fourth point to mark where we will start");
             text.setCharacterSize(24);
             text.setFillColor(sf::Color::Green);
             text.setStyle(sf::Text::Bold | sf::Text::Underlined);
             window.draw(text);
         }
+
         for(int i = 0; i < vertices.size(); i++)
         {
             RectangleShape rect(Vector2f(10,10));
